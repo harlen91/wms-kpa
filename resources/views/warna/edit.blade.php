@@ -1,0 +1,35 @@
+@extends('layout.dashboard')
+@section('title', 'Ubah Warna Jahitan')
+@section('content')
+    {{-- @include('layout.card') --}}
+
+    <?php
+    $tanggal = date('Y/m/d');
+    ?>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-head">
+                    <div class="ibox-title">Ubah Warna Jahitan</div>
+                </div>
+                <div class="ibox-body">
+                    <form action="{{ route('warna.update', $warna->id_warna) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group">
+                            <label>Nama Warna Jahitan</label>
+                            <input type="text" name="nama" class="form-control" value="{{ $warna->nama_warna }}"
+                                placeholder="Nama Warna Jahitan">
+                            @error('nama')
+                                <label class="text-danger">{{ $message }}</label>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
